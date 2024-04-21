@@ -68,9 +68,17 @@
     a.save() -> adds the object to the Item model/table
     a.id, a.item_name -> helps to access the current object details
     a.id, a.pk -> to get the default-created id/primary key of the current object
+    Item.objects.get(pk=2) -> will retrieve a specific object whose pk is 2
 4. On retrieving the objects, we get the output as 'Item object 1 and 2'. To fix this with item_name, go the models.py and define __str__(self) method that returns the desired output.
     def __str__(self):
         return self.item_name
 
-# Django Admin and Superuser
-1. 
+# Django Admin and Superuser 
+1. To login into admin portal, we need to create a superuser by 'python manage.py createsuperuser' and give username, email and password 
+2. On logging into admin portal, we could not find the 'Item' model created in 'food' app because it is not registered in admin.py
+3. Models can be registered in admin.py of 'food' app by:
+    from .models import Item
+    admin.site.register(Item)
+
+
+
