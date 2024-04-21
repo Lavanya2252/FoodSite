@@ -72,5 +72,12 @@
     def __str__(self):
         return self.item_name
 
-# Django Admin and Superuser
-1. 
+# Django Admin and Superuser 
+1. To login into admin portal, we need to create a superuser by 'python manage.py createsuperuser' and give username, email and password 
+2. On logging into admin portal, we could not find the 'Item' model created in 'food' app because it is not registered in admin.py
+3. Models can be registered in admin.py of 'food' app by:
+    from .models import Item
+    admin.site.register(Item)
+
+
+
