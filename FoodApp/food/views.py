@@ -11,3 +11,8 @@ def index(request):
         'all_items': all_items
     }
     return HttpResponse(template.render(context, request))
+
+def details(request, item_id):
+    curr_item = Item.objects.get(pk=item_id)
+    context = {'curr_item': curr_item}
+    return render(request, 'food/details.html', context)

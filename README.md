@@ -68,6 +68,7 @@
     a.save() -> adds the object to the Item model/table
     a.id, a.item_name -> helps to access the current object details
     a.id, a.pk -> to get the default-created id/primary key of the current object
+    Item.objects.get(pk=2) -> will retrieve a specific object whose pk is 2
 4. On retrieving the objects, we get the output as 'Item object 1 and 2'. To fix this with item_name, go the models.py and define __str__(self) method that returns the desired output.
     def __str__(self):
         return self.item_name
