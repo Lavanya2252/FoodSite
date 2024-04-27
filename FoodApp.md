@@ -46,20 +46,20 @@
 
 # Removing the hardcoded url in HTML files:
 9. Refer to the name of the url in urls.py file and replace it with hardcoded urls
-    Eg. <a href= "/food/{{item.item_id}}">Item</a> -----> <a href="{% url 'details' item.id %}">Item</a>
+    Eg. "/food/{{item.item_id}}" -----> "{% url 'details' item.id %}" in a href parameter
     Don't miss the quotes around the name and the parameter to pass
 
 # Namespaces:
 10. In a project, if many apps has same name in the urls, there can be confusion on which one to address while the name is called.
     To solve this, 
     In current app urls.py, add the line as 'app_name="food"'
-    Then, whenever you refer the urls from this app, then give it as: <a href="{% url 'food:details' item.id %}">Item</a>
+    Then, whenever you refer the urls from this app, then give it as: "{% url 'food:details' item.id %}" in a href parameter
 
 # Adding static files:
 11. Adding the style sheet in the html file by adding the below line in head section:
     {% load static %} --> Django 3.0 or more
-    <link rel="stylesheet" href="{% static 'food/style.css' %}">
-    This points to the style.css file in food/static/food/style.css
+    <link rel="stylesheet" href="{% static 'food/images/style.css' %}">
+    This points to the style.css file in food/static/food/images/style.css
 12. If the style sheet is still not rendered, add the following lines in settings.py:
     STATIC_URL = '/static/'
     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
@@ -71,4 +71,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 # Adding base template:
-14.
+14. Create a base template file with navbar code in it so that it can be added to all pages
+    This will contain {% block body %} and {% endblock %}
+
+# Adding Forms:
+15. Create a forms.py file
+    from django import forms
+    from .models import Item  --> the model for which the form is created
+
+    class ItemForm(forms.ModelForm):
+        class Meta:
+            model - Item --> which model
+            fields = ['item_name', 'item_desc', 'item_price', 'item_image']
+16. Adding a respective view:
+    def create_item(request):
+        form = ItemForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            return redirect('food:index')
+        return render(request, 'food/create_item.html', {'form':form})
