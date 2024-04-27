@@ -1,4 +1,5 @@
 {% extends 'food/base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,17 +10,17 @@
 <body>
     {% block body %}
     {% for item in all_items %}
-        <div class="row">
+        <div class="row my-sm-4">
             <div class="col-md-3 offset-md-2">
-                <img class="card" height="150px" src="{{item.item_image}}" />
+                <img src="{{item.item_image}}" class="card" height="150px" width="250px">
             </div>
-            <div class="col-md-4 offset-md-2">
-                <h3>{{item.item_name}}</h3>
-                <h3>{{item.item_desc}}</h3>
-                <h3>{{item.item_price}}</h3>
+            <div class="col-md-3">
+                <h3>{{ item.item_name }}</h3>
+                <h4>{{ item.item_desc }}</h4>
+                <h5>Rs. {{ item.item_price }}</h5>
             </div>
-            <div class="col-md-2 offset-md-2">
-
+            <div class="col-md-2">
+                <a href="{% url 'food:details' item.id %}" class="btn btn-success">Details</a>
             </div>
         </div>
     {% endfor %}
@@ -28,7 +29,7 @@
     <!--
     <ul>
         <li>
-            <a href="/food/{{item.id}}">{{item.item_name}}</a> 
+            # <a href="/food/{{item.id}}">{{item.item_name}}</a> 
             <a href="{% url 'food:details' item.id %}">{{item.item_name}}</a>
         </li>
     </ul>
