@@ -24,7 +24,7 @@
 
 # Steps to create an app:
 1. A Django project can contain multiple apps(sections)
-2. Navigate inside the project folder (eg. FoodSite/) -> run: python manage.py startapp app_name(food)
+2. Navigate inside the project folder (eg. FoodSite/) -> run: python manage.py startapp app_name(food) or django-admin startapp app_name
 3. Each app contains a views.py -> which processes the user request and sends back an appropriate response
 4. After each app is created, it should be added to list of 'installed apps' in settings.py file
 

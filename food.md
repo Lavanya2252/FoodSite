@@ -90,3 +90,5 @@
             form.save()
             return redirect('food:index')
         return render(request, 'food/create_item.html', {'form':form})
+17. We always add {% csrf_token %} tag in html whenever we deal with forms
+18. Basically, whenever there arises a need for forms, we create a template class for that form in forms.py with the help of any models if required, and then we import that form template into views.py to play with it and send it for rendering later  
